@@ -1,0 +1,21 @@
+newton.rephson<-function(a,fun,e){#定义新函数a是初始值fun为函数e是精度
+  t=100000000 
+  fun1=D(fun,"x")#对函数求导
+  x=a#a为x0
+  b<-eval(fun)#b为f(xn)
+  c<-eval(fun1)#c为f'(xn)
+  t<-a-(b/c)#t是x1
+  while(abs(t-a)>e){#建立循环，条件为达到精度e
+    x=t
+    a<-t
+    b<-eval(fun)
+    c<-eval(fun1)
+    t<-a-(b/c)
+  }
+  print(t)#输出结果
+}
+
+newton.rephson(2.5,expression(x^-5),0.0001)
+newton.rephson(0.25,expression((x^2)^0.25),0.0001)
+newton.rephson(0.5,expression(0.4*(exp(x)+1)^(-1)+0.2-x*exp(-x^2)),0.0001)
+newton.rephson(0.6,expression(0.4*(exp(x)+1)^(-1)+0.2-x*exp(-x^2)),0.0001)
